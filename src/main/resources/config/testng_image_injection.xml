@@ -1,0 +1,43 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Appium Demo Suite" verbose="0" parallel="tests">
+    <listeners>
+        <listener class-name="com.quantum.listeners.QuantumReportiumListener"/>
+    </listeners>
+
+    <parameter name="driver.name" value="perfectoDriver"/>
+
+    <test name="IOS Camera App Image Injection Test" enabled="true">
+        <parameter name="driver.capabilities.deviceName" value="0C2210C8EBD9A1FB421A8D0A692E6C72F85E4C9E"></parameter>
+<!--         <parameter name="driver.capabilities.app" value="PUBLIC:CameraTestApp.ipa"></parameter> -->
+        <parameter name="driver.capabilities.bundleId" value="Perfecto.CameraTestApp"/>
+<!--         <parameter name="driver.capabilities.sensorInstrument" value="true"/> -->
+        <parameter name="env.resources" value="src/main/resources/ios"/>
+
+        <groups>
+            <run>
+                <include name="@IOSImageInjectionSample"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.qmetry.qaf.automation.step.client.gherkin.GherkinScenarioFactory"/>
+        </classes>
+    </test>
+
+    <test name="Android Camera App Image Injection Test" enabled="true">
+        <parameter name="driver.capabilities.deviceName" value="RF8M329FK3X"></parameter>
+<!--         <parameter name="driver.capabilities.app" value="PUBLIC:CameraApp4.apk"></parameter> -->
+        <parameter name="driver.capabilities.appPackage" value="com.perfectomobile.cameraapp"/>
+<!--         <parameter name="driver.capabilities.sensorInstrument" value="true"/> -->
+<!--         <parameter name="driver.capabilities.autoInstrument" value="true"/> -->
+        
+        <parameter name="env.resources" value="src/main/resources/android"/>
+        <groups>
+            <run>
+                <include name="@AndroidImageInjectionSample"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.qmetry.qaf.automation.step.client.gherkin.GherkinScenarioFactory"/>
+        </classes>
+    </test>
+</suite>
